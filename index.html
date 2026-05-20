@@ -3,961 +3,979 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ - Pepper Labs</title>
+    <title>FAQ - K-Youth | Pepper Labs</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
     <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
         :root {
-            --black: #0a0a0a;
             --orange: #F16821;
-            --white: #ffffff;
-            --bg: #f7f7f7;
-            --border: #e0e0e0;
-            --text-muted: #888;
+            --orange-light: rgba(241, 104, 33, 0.08);
+            --orange-mid: rgba(241, 104, 33, 0.18);
+            --dark: #111827;
+            --mid: #374151;
+            --muted: #6B7280;
+            --light-bg: #F8F7FF;
+            --white: #fff;
+            --border: #E5E7EB;
+            --radius: 14px;
         }
 
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            font-family: 'Barlow', sans-serif;
-            background: var(--bg);
-            color: var(--black);
-            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: var(--light-bg);
+            color: var(--dark);
         }
 
         /* ── NAVBAR ── */
-        .navbar {
-            position: sticky; top: 0; z-index: 100;
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
             background: #fff;
             border-bottom: 1px solid var(--border);
-            padding: 0 48px;
-            height: 64px;
+        }
+
+        .navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 80px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
-        .navbar-logo img { height: 52px; width: auto; }
-        .navbar-links { display: flex; gap: 32px; list-style: none; }
-        .navbar-links a {
-            font-family: 'Barlow', sans-serif;
-            font-size: 14px; font-weight: 600;
-            color: #555; text-decoration: none;
-            letter-spacing: 0.04em; text-transform: uppercase;
-            transition: color 0.2s;
+
+        .navbar-inner img {
+            height: 58px;
+            width: auto;
         }
-        .navbar-links a:hover, .navbar-links a.active { color: var(--orange); }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark);
+            text-decoration: none;
+            transition: color 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover { color: var(--orange); }
 
         /* ── HERO ── */
         .hero {
-            background: #fff;
-            padding: 64px 48px 56px;
-            position: sticky;
-            top: 64px; /* below navbar */
-            height: calc(100vh - 64px);
+            position: relative;
+            height: 180px;
             display: flex;
             align-items: center;
+            justify-content: flex-start;
             overflow: hidden;
-        }
-        .hero-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            align-items: center;
-            gap: 32px;
-        }
-        .hero-left { display: flex; flex-direction: column; }
-        .hero-eyebrow {
-            font-family: 'Barlow', sans-serif;
-            font-size: 11px; font-weight: 600;
-            letter-spacing: 0.22em; text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-        }
-        .hero-title-row {
-            display: flex;
-            align-items: flex-end;
-            gap: 20px;
-            line-height: 1;
-        }
-        .hero-title {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: clamp(38px, 5vw, 62px);
-            font-weight: 900;
-            line-height: 0.95;
-            letter-spacing: -0.01em;
-            text-transform: uppercase;
-            color: var(--black);
-        }
-        .hero-faq-word {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: clamp(56px, 9vw, 110px);
-            font-weight: 900;
-            line-height: 0.92;
-            text-transform: uppercase;
-            color: var(--orange);
-            letter-spacing: -0.03em;
-            flex-shrink: 0;
-        }
-        .hero-right { flex-shrink: 0; }
-        .hero-image {
-            width: clamp(240px, 26vw, 360px);
-            height: auto;
-            display: block;
-            filter: drop-shadow(0 16px 40px rgba(0,0,0,0.12));
+            background: linear-gradient(120deg, #cac8e8 0%, #d8cfe8 20%, #e8d8e0 45%, #f0dfc8 70%, #f5e8d0 100%);
         }
 
-        /* ── FAQ SECTION ── */
-        .faq-wrapper {
-            position: relative;
-            z-index: 10;
-        }
-        .faq-section {
-            max-width: 100%;
-            padding: 0;
-            background: var(--bg);
-            border-radius: 28px 28px 0 0;
-            box-shadow: 0 -12px 48px rgba(0,0,0,0.12);
-            position: relative;
-        }
-        .faq-section-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 52px 48px 100px;
-        }
-
-        /* ── FAQ SECTION HEADER ── */
-        .faq-section-header {
-            font-family: 'Barlow', sans-serif;
-            font-size: 11px; font-weight: 600;
-            letter-spacing: 0.22em; text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 16px;
-        }
-        .faq-section-desc {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: clamp(26px, 3.5vw, 40px);
-            font-weight: 700;
-            color: var(--black);
-            margin-bottom: 40px;
-            line-height: 1.15;
-            letter-spacing: -0.01em;
-            text-transform: uppercase;
-            max-width: 640px;
-        }
-        .faq-section-desc em {
-            font-style: normal;
-            color: var(--orange);
-        }
-
-        /* ── HERO SCALE ON SCROLL ── */
-        .hero { transform-origin: center top; transition: none; }
-        .faq-wrapper { position: relative; z-index: 10; margin-top: 0; }
-        @keyframes wordReveal {
-            0%   { opacity: 0; transform: translateY(28px) skewY(4deg); }
-            100% { opacity: 1; transform: translateY(0) skewY(0deg); }
-        }
-        @keyframes lineGrow {
-            0%   { transform: scaleX(0); }
-            100% { transform: scaleX(1); }
-        }
-        .hero-faq-word .word-line {
-            display: block;
-            overflow: hidden;
-        }
-        .hero-faq-word .word-inner {
-            display: block;
-            opacity: 0;
-            animation: wordReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-        .hero-faq-word .word-line:nth-child(1) .word-inner { animation-delay: 0.1s; }
-        .hero-faq-word .word-line:nth-child(2) .word-inner { animation-delay: 0.28s; }
-        .hero-faq-word .word-line:nth-child(3) .word-inner { animation-delay: 0.46s; }
-        .hero-accent-line {
-            display: block;
-            height: 5px;
-            background: var(--orange);
-            transform-origin: left center;
-            transform: scaleX(0);
-            animation: lineGrow 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.8s forwards;
-            border-radius: 2px;
-            margin-top: 14px;
-        }
-
-        /* ── FAQ BOX (outline + shadow) ── */
-        .faq-box {
-            border: 1.5px solid #d0d0d0;
-            border-radius: 18px;
-            box-shadow:
-                0 4px 6px rgba(0,0,0,0.04),
-                0 10px 40px rgba(0,0,0,0.08),
-                0 20px 60px rgba(0,0,0,0.05);
-            overflow: hidden;
-            background: #fff;
-        }
-
-        /* ── FILTER TABS ── */
-        .filter-tabs {
-            display: flex;
-            gap: 0;
-            border-bottom: 1.5px solid #e8e8e8;
-            padding: 0 8px;
-            background: #fafafa;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
-        .filter-tabs::-webkit-scrollbar { display: none; }
-        .filter-btn {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 13px; font-weight: 700;
-            letter-spacing: 0.12em; text-transform: uppercase;
-            padding: 16px 28px;
-            border: none; background: transparent;
-            color: var(--text-muted);
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            margin-bottom: -1.5px;
-            transition: color 0.2s, border-color 0.2s;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-        .filter-btn:hover { color: var(--black); }
-        .filter-btn.active {
-            color: var(--orange);
-            border-bottom-color: var(--orange);
-        }
-
-        /* ── FAQ ROWS ── */
-        .faq-list { border-top: 1px solid #ebebeb; }
-
-        .faq-item {
-            border-bottom: 1px solid #ebebeb;
-            overflow: hidden;
-        }
-        .faq-item:last-child { border-bottom: none; }
-        .faq-item.hidden { display: none; }
-
-        /* Question row */
-        .faq-question {
-            display: grid;
-            grid-template-columns: 52px 100px 1fr;
-            align-items: center;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            min-height: 72px;
-        }
-
-        /* Paint wipe — HOVER */
-        .faq-question::before {
+        /* Subtle noise/texture overlay */
+        .hero::before {
             content: '';
-            position: absolute; inset: 0;
-            background: var(--orange);
-            transform: scaleX(0);
-            transform-origin: left center;
-            transition: transform 0.45s cubic-bezier(0.77, 0, 0.175, 1);
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 55% 80% at 55% 60%, rgba(245,220,185,0.55) 0%, transparent 65%),
+                radial-gradient(ellipse 35% 60% at 85% 40%, rgba(230,210,240,0.4) 0%, transparent 60%);
             z-index: 0;
         }
-        .faq-item:hover .faq-question::before { transform: scaleX(1); }
 
-        /* Circle */
-        .faq-circle {
-            position: relative; z-index: 1;
-            display: flex; align-items: center; justify-content: center;
-            padding-left: 22px;
+        .hero::after { content: none; }
+
+        /* Decorative scattered elements */
+        .hero-decor {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
         }
-        .faq-circle-inner {
-            width: 22px; height: 22px;
+
+        /* Purple dot clusters - top left */
+        .hero-decor .dot-cluster-tl {
+            position: absolute;
+            top: 18px;
+            left: 28px;
+            display: grid;
+            grid-template-columns: repeat(3, 7px);
+            gap: 4px;
+        }
+        .hero-decor .dot-cluster-tl span {
+            width: 5px; height: 5px;
             border-radius: 50%;
-            border: 2px solid #aaa;
-            background: transparent;
-            transition: background 0.3s 0.1s, border-color 0.3s 0.1s;
-            flex-shrink: 0;
+            background: #7b6fa0;
+            opacity: 0.55;
+            display: block;
         }
-        .faq-item:hover .faq-circle-inner { background: #fff; border-color: #fff; }
+        .hero-decor .dot-cluster-tl span:nth-child(1),
+        .hero-decor .dot-cluster-tl span:nth-child(3),
+        .hero-decor .dot-cluster-tl span:nth-child(7),
+        .hero-decor .dot-cluster-tl span:nth-child(9) { opacity: 0; }
 
-        /* Label */
-        .faq-label {
-            position: relative; z-index: 1;
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 15px; font-weight: 800;
-            letter-spacing: 0.1em; text-transform: uppercase;
-            color: var(--black);
-            padding-left: 8px;
-            transition: color 0.3s 0.05s;
-            user-select: none;
+        /* Plus / cross - left mid */
+        .hero-decor .plus-left {
+            position: absolute;
+            bottom: 32px;
+            left: 60px;
+            color: #8a7db5;
+            font-size: 18px;
+            opacity: 0.5;
+            line-height: 1;
         }
-        .faq-item:hover .faq-label { color: #fff; }
-        .faq-label::after { content: 'View'; }
-        .faq-item.active .faq-label::after { content: 'Close'; }
 
-        /* Arrow + text */
-        .faq-question-text-wrap {
-            position: relative; z-index: 1;
-            display: flex; align-items: center; gap: 12px;
-            padding: 20px 28px 20px 0;
+        /* Globe icon - bottom center */
+        .hero-decor .globe-center {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #e0a050;
+            font-size: 26px;
+            opacity: 0.55;
         }
-        .faq-arrow {
-            width: 0; height: 0;
-            border-top: 6px solid transparent;
-            border-bottom: 6px solid transparent;
-            border-left: 9px solid var(--black);
-            flex-shrink: 0;
-            opacity: 0;
-            transition: opacity 0.3s 0.15s, border-left-color 0.3s;
-        }
-        .faq-item:hover .faq-arrow { opacity: 1; border-left-color: rgba(255,255,255,0.7); }
-        .faq-question-text {
-            font-family: 'Barlow', sans-serif;
-            font-size: 15px; font-weight: 700;
-            letter-spacing: 0.06em; text-transform: uppercase;
-            color: var(--black);
-            transition: color 0.3s 0.05s;
-            line-height: 1.3;
-        }
-        .faq-item:hover .faq-question-text { color: rgba(255,255,255,0.88); }
 
-        /* ── ANSWER PANEL ── */
-        .faq-answer {
+        /* Small circle - top center-right */
+        .hero-decor .circle-tr {
+            position: absolute;
+            top: 22px;
+            right: 160px;
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            border: 2px solid #8a7db5;
+            opacity: 0.35;
+        }
+
+        /* Orange dot group - top right */
+        .hero-decor .dot-cluster-tr {
+            position: absolute;
+            top: 20px;
+            right: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            align-items: flex-start;
+        }
+        .hero-decor .dot-cluster-tr .dot-row {
+            display: flex;
+            gap: 4px;
+        }
+        .hero-decor .dot-cluster-tr span {
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: #e0a050;
+            opacity: 0.6;
+            display: block;
+        }
+
+        /* Small decorative dot bottom right */
+        .hero-decor .dot-br {
+            position: absolute;
+            bottom: 28px;
+            right: 80px;
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: #c8a0d8;
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            font-weight: 800;
+            color: #1e1a3a;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            line-height: 1.15;
+        }
+
+        @media (max-width: 900px) { .hero h1 { font-size: 34px; } }
+        @media (max-width: 640px) {
+            .hero { height: 160px; }
+            .hero h1 { font-size: 24px; }
+        }
+
+        /* ── FAQ LAYOUT ── */
+        .faq-section {
+            padding: 60px 0 80px;
+        }
+
+        .faq-outer {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
             display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            grid-template-columns: 240px 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+
+        /* ── SIDEBAR ── */
+        .sidebar {
+            position: sticky;
+            top: 90px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sidebar-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 0 4px 8px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 4px;
+        }
+
+        .sidebar-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            border-radius: 12px;
+            border: 2px solid transparent;
             background: #fff;
-        }
-        .faq-item.active .faq-answer { grid-template-rows: 1fr; }
-        .faq-answer-inner { overflow: hidden; }
-        .faq-answer-content {
-            display: grid;
-            grid-template-columns: 152px 1fr;
-            gap: 0;
-            padding: 28px 28px 32px 0;
-            opacity: 0;
-            transform: translateY(-6px);
-            transition: opacity 0.35s ease 0.15s, transform 0.35s ease 0.15s;
-            border-top: 1px solid #f0f0f0;
-        }
-        .faq-item.active .faq-answer-content { opacity: 1; transform: translateY(0); }
-        .faq-answer-label {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 11px; font-weight: 700;
-            letter-spacing: 0.18em; text-transform: uppercase;
-            color: var(--text-muted);
-            padding-left: 52px; padding-top: 3px;
-        }
-        .faq-answer-text {
-            font-family: 'Barlow', sans-serif;
-            font-size: 15px; color: #444;
-            line-height: 1.75; font-weight: 400;
-            max-width: 680px;
+            color: var(--mid);
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: left;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
-        /* ── FILTER ANIMATION ── */
-        @keyframes rowSlideIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to   { opacity: 1; transform: translateY(0); }
+        .sidebar-btn .btn-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: var(--light-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            flex-shrink: 0;
+            transition: background 0.25s ease;
         }
-        .faq-item.animate-in { animation: rowSlideIn 0.3s ease forwards; }
+
+        .sidebar-btn:hover {
+            border-color: var(--orange);
+            color: var(--orange);
+            transform: translateX(3px);
+        }
+
+        .sidebar-btn:hover .btn-icon {
+            background: var(--orange-light);
+        }
+
+        .sidebar-btn.active {
+            background: var(--orange);
+            color: #fff;
+            border-color: var(--orange);
+            box-shadow: 0 6px 20px rgba(241,104,33,0.3);
+        }
+
+        .sidebar-btn.active .btn-icon {
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+        }
+
+        /* ── MAIN CONTENT ── */
+        .faq-main {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Topic header card */
+        .topic-header {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 28px 32px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            display: none;
+        }
+
+        .topic-header.visible { display: block; }
+
+        .topic-header .topic-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--orange-light);
+            color: var(--orange);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+
+        .topic-header h2 {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--dark);
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .topic-header p {
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* ── FLIP CARDS GRID ── */
+        .flip-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .flip-card {
+            perspective: 1200px;
+            cursor: pointer;
+            height: 160px;
+        }
+
+        .flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-front,
+        .flip-back {
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            overflow: hidden;
+        }
+
+        .flip-front {
+            background: #fff;
+            border: 2px solid var(--border);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 22px 22px 18px;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .flip-card:hover .flip-front {
+            border-color: var(--orange);
+            box-shadow: 0 8px 24px rgba(241,104,33,0.12);
+        }
+
+        .flip-front-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: var(--orange-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--orange);
+            font-size: 15px;
+        }
+
+        .flip-front-question {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark);
+            line-height: 1.4;
+            flex: 1;
+            margin-top: 10px;
+        }
+
+        .flip-front-hint {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: var(--orange);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-top: 8px;
+        }
+
+        .flip-front-hint i { font-size: 10px; }
+
+        .flip-back {
+            background: linear-gradient(135deg, var(--orange) 0%, #d45510 100%);
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 22px;
+        }
+
+        .flip-back-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.65);
+            margin-bottom: 8px;
+        }
+
+        .flip-back-answer {
+            font-size: 13.5px;
+            color: #fff;
+            line-height: 1.65;
+            font-weight: 400;
+        }
+
+        .flip-back-answer strong {
+            font-weight: 700;
+            display: block;
+            margin-top: 6px;
+            margin-bottom: 2px;
+        }
+
+        .flip-back-close {
+            position: absolute;
+            top: 12px;
+            right: 14px;
+            color: rgba(255,255,255,0.6);
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        /* Category panels */
+        .faq-panel { display: none; }
+        .faq-panel.active { display: flex; flex-direction: column; gap: 24px; }
 
         /* ── FOOTER ── */
         footer {
+            padding: 32px 0 0;
             border-top: 1px solid var(--border);
-            padding: 60px 48px 28px;
             background: #fff;
-            position: relative;
-            z-index: 11;
         }
-        .footer-inner { max-width: 1200px; margin: 0 auto; }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 48px; margin-bottom: 40px;
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
-        .footer-logo img { height: 64px; margin-bottom: 18px; }
-        .footer-col h4 {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 12px; font-weight: 700;
-            letter-spacing: 0.12em; text-transform: uppercase;
-            color: var(--text-muted); margin-bottom: 16px;
+
+        .footer-logo-row {
+            display: flex;
+            justify-content: center;
+            padding-bottom: 28px;
         }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { font-size: 14px; color: #555; margin-bottom: 10px; line-height: 1.6; }
-        .footer-col ul li a { color: #555; text-decoration: none; transition: color 0.2s; }
-        .footer-col ul li a:hover { color: var(--orange); }
+
+        .footer-logo-row img { height: 64px; width: auto; }
+
         .footer-bottom {
-            border-top: 1px solid var(--border); padding-top: 24px;
-            display: flex; justify-content: space-between; align-items: center;
-            font-size: 13px; color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: var(--muted);
         }
-        .social-links { display: flex; gap: 20px; }
-        .social-links i { font-size: 15px; cursor: pointer; color: var(--text-muted); transition: color 0.2s; }
-        .social-links i:hover { color: var(--orange); }
+
+        .social-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: var(--muted);
+            font-size: 17px;
+            text-decoration: none;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-links a:hover { color: var(--orange); }
 
         /* ── RESPONSIVE ── */
-
-        /* Small phones (≤ 375px) */
-        @media (max-width: 375px) {
-            .navbar { padding: 0 16px; height: 56px; }
-            .navbar-logo img { height: 38px; }
-            .hero {
-                padding: 32px 16px 28px;
-                top: 56px;
-                height: auto;
-                min-height: calc(100svh - 56px);
-            }
-            .hero-faq-word { font-size: 52px; }
-            .hero-accent-line { margin-top: 10px; }
-            .hero-right { display: none; }
-            .faq-section-inner { padding: 32px 16px 64px; }
-            .faq-section-desc { font-size: 20px; }
-            .faq-box { border-radius: 10px; }
-            .filter-btn { font-size: 11px; padding: 14px 12px; }
-            .faq-question { grid-template-columns: 40px 68px 1fr; min-height: 56px; }
-            .faq-question-text { font-size: 11px; letter-spacing: 0.03em; }
-            .faq-answer-content { grid-template-columns: 1fr; padding: 20px 16px 24px 40px; }
-            .faq-answer-label { padding-left: 0; margin-bottom: 8px; }
-            .faq-answer-text { font-size: 14px; }
-            footer { padding: 40px 16px 20px; }
-            .footer-grid { grid-template-columns: 1fr; gap: 24px; }
-            .footer-logo img { height: 52px; }
-            .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+        @media (max-width: 900px) {
+            .faq-outer { grid-template-columns: 1fr; }
+            .sidebar { position: static; flex-direction: row; flex-wrap: wrap; gap: 8px; }
+            .sidebar-label { display: none; }
+            .sidebar-btn { padding: 10px 14px; font-size: 13px; }
+            .sidebar-btn .btn-icon { width: 28px; height: 28px; font-size: 12px; }
+            .flip-grid { grid-template-columns: 1fr; }
+            .flip-card { height: 160px; }
+            .hero h1 { font-size: 34px; }
         }
 
-        /* Standard mobile (376px – 767px) */
-        @media (min-width: 376px) and (max-width: 767px) {
-            .navbar { padding: 0 20px; height: 60px; }
-            .navbar-logo img { height: 44px; }
-            .hero {
-                padding: 40px 20px 36px;
-                top: 60px;
-                height: auto;
-                min-height: calc(100svh - 60px);
-            }
-            .hero-inner { grid-template-columns: 1fr; }
-            .hero-right { display: none; }
-            .hero-faq-word { font-size: clamp(60px, 18vw, 88px); }
-            .faq-section-inner { padding: 40px 20px 80px; }
-            .faq-section-desc { font-size: 22px; }
-            .faq-box { border-radius: 12px; }
-            .filter-tabs { padding: 0 4px; overflow-x: auto; }
-            .filter-btn { font-size: 12px; padding: 14px 16px; white-space: nowrap; }
-            .faq-question { grid-template-columns: 44px 76px 1fr; min-height: 60px; }
-            .faq-question-text { font-size: 12px; }
-            .faq-answer-content { grid-template-columns: 1fr; padding: 20px 20px 24px 44px; }
-            .faq-answer-label { padding-left: 0; margin-bottom: 8px; }
-            .faq-answer-text { font-size: 14px; }
-            footer { padding: 48px 20px 24px; }
-            .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-            .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
-        }
-
-        /* Tablet (768px – 1023px) */
-        @media (min-width: 768px) and (max-width: 1023px) {
-            .navbar { padding: 0 32px; }
-            .hero { padding: 48px 32px 44px; top: 64px; }
-            .hero-inner { grid-template-columns: 1fr auto; }
-            .hero-right { display: block; }
-            .hero-image { width: clamp(180px, 22vw, 260px); }
-            .hero-faq-word { font-size: clamp(52px, 8vw, 80px); }
-            .faq-section-inner { padding: 48px 32px 80px; }
-            .faq-section-desc { font-size: 28px; }
-            .faq-question { grid-template-columns: 48px 90px 1fr; }
-            .faq-answer-content { grid-template-columns: 120px 1fr; }
-            footer { padding: 52px 32px 28px; }
-            .footer-grid { grid-template-columns: 2fr 1fr 1fr; gap: 32px; }
+        @media (max-width: 640px) {
+            .hero { height: 160px; }
+            .hero h1 { font-size: 24px; }
         }
     </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-    <div class="navbar-logo">
-        <img src="https://pepperlabs.my/k-youth/assets/pepper-labs-logo/transparent-logo.png" alt="Pepper Labs">
+<!-- ── NAVBAR ── -->
+<header>
+    <div class="navbar-inner">
+        <a href="https://pepperlabs.my/">
+            <img src="https://pepperlabs.my/k-youth/assets/pepper-labs-logo/transparent-logo.png" alt="Pepper Labs">
+        </a>
+        <ul class="nav-links">
+            <li><a href="https://pepperlabs.my/">About Us</a></li>
+            <li><a href="https://pepperlabs.my/k-youth/">K-Youth</a></li>
+        </ul>
     </div>
-</nav>
+</header>
 
-<!-- HERO -->
+<!-- ── HERO ── -->
 <section class="hero">
-    <div class="hero-inner">
-        <div class="hero-left">
-            <div class="hero-faq-word">
-                <span class="word-line"><span class="word-inner">Frequently</span></span>
-                <span class="word-line"><span class="word-inner">Asked</span></span>
-                <span class="word-line"><span class="word-inner">Questions</span></span>
-                <span class="hero-accent-line"></span>
-            </div>
+    <div class="hero-decor">
+        <!-- Purple dot cluster top-left -->
+        <div class="dot-cluster-tl">
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
         </div>
-        <div class="hero-right">
-            <img
-                class="hero-image"
-                src="https://img.freepik.com/premium-vector/faqs-concept-illustration_114360-5185.jpg?semt=ais_hybrid&w=740&q=80"
-                alt="FAQ Illustration"
-            >
+        <!-- Plus sign left -->
+        <div class="plus-left">+</div>
+        <!-- Globe center bottom -->
+        <div class="globe-center"><i class="fa-regular fa-circle-dot"></i></div>
+        <!-- Small open circle top center-right -->
+        <div class="circle-tr"></div>
+        <!-- Orange dot cluster top-right -->
+        <div class="dot-cluster-tr">
+            <div class="dot-row"><span></span><span></span><span></span></div>
+            <div class="dot-row"><span></span><span></span></div>
+            <div class="dot-row"><span></span></div>
         </div>
+        <!-- Dot bottom right -->
+        <div class="dot-br"></div>
+    </div>
+    <div class="hero-content">
+        <h1>Frequently Asked Questions</h1>
     </div>
 </section>
 
-<!-- FAQ SECTION -->
-<div class="faq-wrapper">
+<!-- ── FAQ SECTION ── -->
 <section class="faq-section">
-    <div class="faq-section-inner">
-    <div class="faq-section-header">// Question – Answer</div>
-    <div class="faq-section-desc">Here you can find <em>answers</em> to the most frequently asked questions.</div>
-    <div class="faq-box">
+    <div class="faq-outer">
 
-        <!-- Filter tabs -->
-        <div class="filter-tabs">
-            <button class="filter-btn active" data-filter="programme">About Programme</button>
-            <button class="filter-btn" data-filter="course">Course Structure</button>
-            <button class="filter-btn" data-filter="ojt">OJT Experience</button>
-        </div>
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-label">Browse Topics</div>
 
-        <!-- FAQ rows -->
-        <div class="faq-list" id="faqList">
+            <button class="sidebar-btn active" data-target="programme">
+                <span class="btn-icon"><i class="fa-solid fa-star"></i></span>
+                About Programme
+            </button>
 
-            <!-- PROGRAMME -->
-            <div class="faq-item" data-category="programme">
-                <div class="faq-question">
-                    <div class="faq-circle"><div class="faq-circle-inner"></div></div>
-                    <div class="faq-label"></div>
-                    <div class="faq-question-text-wrap">
-                        <div class="faq-arrow"></div>
-                        <span class="faq-question-text">What is the K-Youth Development Programme 2026?</span>
-                    </div>
+            <button class="sidebar-btn" data-target="course">
+                <span class="btn-icon"><i class="fa-solid fa-book-open"></i></span>
+                Course Structure
+            </button>
+
+            <button class="sidebar-btn" data-target="ojt">
+                <span class="btn-icon"><i class="fa-solid fa-briefcase"></i></span>
+                OJT Experience
+            </button>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <div class="faq-main">
+
+            <!-- ══ PANEL: PROGRAMME ══ -->
+            <div class="faq-panel active" id="panel-programme">
+
+                <div class="topic-header visible">
+                    <div class="topic-tag"><i class="fa-solid fa-star"></i> About Programme</div>
+                    <h2>What is K-Youth?</h2>
+                    <p>Everything you need to know about the K-Youth Development Programme 2026 — eligibility, costs, structure, and more.</p>
                 </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <div class="faq-answer-content">
-                        <div class="faq-answer-label">Answer:</div>
-                        <div class="faq-answer-text">K-Youth Development Programme is a youth employability initiative by Khazanah Nasional Berhad aimed at developing Malaysia's future talents through industry-relevant skills and experience.</div>
-                    </div>
-                </div></div>
-            </div>
 
-            <div class="faq-item" data-category="programme">
-                <div class="faq-question">
-                    <div class="faq-circle"><div class="faq-circle-inner"></div></div>
-                    <div class="faq-label"></div>
-                    <div class="faq-question-text-wrap">
-                        <div class="faq-arrow"></div>
-                        <span class="faq-question-text">What are the requirements?</span>
-                    </div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <div class="faq-answer-content">
-                        <div class="faq-answer-label">Answer:</div>
-                        <div class="faq-answer-text">Malaysian citizen aged 18–30 · Currently unemployed · Diploma or Degree holder · Not participated in similar government programmes (MySTEP, PROTÉGÉ, etc.) · Able to commit full-time for 4 months · Strong interest in Digital &amp; Technology roles.</div>
-                    </div>
-                </div></div>
-            </div>
+                <div class="flip-grid">
 
-            <div class="faq-item" data-category="programme">
-                <div class="faq-question">
-                    <div class="faq-circle"><div class="faq-circle-inner"></div></div>
-                    <div class="faq-label"></div>
-                    <div class="faq-question-text-wrap">
-                        <div class="faq-arrow"></div>
-                        <span class="faq-question-text">What is the cost of the programme?</span>
-                    </div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <div class="faq-answer-content">
-                        <div class="faq-answer-label">Answer:</div>
-                        <div class="faq-answer-text">There is no cost. Participants will receive a monthly allowance of approximately RM2,000.</div>
-                    </div>
-                </div></div>
-            </div>
-
-            <div class="faq-item" data-category="programme">
-                <div class="faq-question">
-                    <div class="faq-circle"><div class="faq-circle-inner"></div></div>
-                    <div class="faq-label"></div>
-                    <div class="faq-question-text-wrap">
-                        <div class="faq-arrow"></div>
-                        <span class="faq-question-text">What is the programme structure?</span>
-                    </div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <div class="faq-answer-content">
-                        <div class="faq-answer-label">Answer:</div>
-                        <div class="faq-answer-text">The programme runs for 4 months: 1 month of training followed by 3 months of On-the-Job Training (OJT). Training is hybrid, while OJT is fully physical.</div>
-                    </div>
-                </div></div>
-            </div>
-
-            <div class="faq-item" data-category="programme">
-                <div class="faq-question">
-                    <div class="faq-circle"><div class="faq-circle-inner"></div></div>
-                    <div class="faq-label"></div>
-                    <div class="faq-question-text-wrap">
-                        <div class="faq-arrow"></div>
-                        <span class="faq-question-text">Will I receive a certificate?</span>
-                    </div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <div class="faq-answer-content">
-                        <div class="faq-answer-label">Answer:</div>
-                        <div class="faq-answer-text">Yes, participants will receive industry-recognised certificates upon successful completion.</div>
-                    </div>
-                </div></div>
-            </div>
-
-            <div class="faq-item" data-category="programme">
-                <div class="faq-question">
-                    <div class="faq-circle"><div class="faq-circle-inner"></div></div>
-                    <div class="faq-label"></div>
-                    <div class="faq-question-text-wrap">
-                        <div class="faq-arrow"></div>
-                        <span class="faq-question-text">When will I receive my offer / placement letter?</span>
-                    </div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <div class="faq-answer-content">
-                        <div class="faq-answer-label">Answer:</div>
-                        <div class="faq-answer-text">It will be issued after final approval. Further details will be included in your offer letter.</div>
-                    </div>
-                </div></div>
-            </div>
-
-            <div class="faq-item" data-category="programme">
-                <div class="faq-question">
-                    <div class="faq-circle"><div class="faq-circle-inner"></div></div>
-                    <div class="faq-label"></div>
-                    <div class="faq-question-text-wrap">
-                        <div class="faq-arrow"></div>
-                        <span class="faq-question-text">Are host companies under Pepper Labs?</span>
-                    </div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <div class="faq-answer-content">
-                        <div class="faq-answer-label">Answer:</div>
-                        <div class="faq-answer-text">No, host companies are external. If a company is not listed, they will need to register under the programme to participate.</div>
-                    </div>
-                </div></div>
-            </div>
-
-            <div class="faq-item" data-category="programme">
-                <div class="faq-question">
-                    <div class="faq-circle"><div class="faq-circle-inner"></div></div>
-                    <div class="faq-label"></div>
-                    <div class="faq-question-text-wrap">
-                        <div class="faq-arrow"></div>
-                        <span class="faq-question-text">Are there placements outside Klang Valley?</span>
-                    </div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <div class="faq-answer-content">
-                        <div class="faq-answer-label">Answer:</div>
-                        <div class="faq-answer-text">Currently, there are no placements outside Klang Valley. Updates will be shared if opportunities become available.</div>
-                    </div>
-                </div></div>
-            </div>
-
-            <!-- COURSE -->
-            <div class="faq-item" data-category="course">
-                <div class="faq-question">
-                    <div class="faq-circle"><div class="faq-circle-inner"></div></div>
-                    <div class="faq-label"></div>
-                    <div class="faq-question-text-wrap">
-                        <div class="faq-arrow"></div>
-                        <span class="faq-question-text">What is the course structure?</span>
-                    </div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <div class="faq-answer-content">
-                        <div class="faq-answer-label">Answer:</div>
-                        <div class="faq-answer-text">The programme focuses on Artificial Intelligence (AI) training with placement opportunities, allowing participants to apply AI solutions in real-world business environments.</div>
-                    </div>
-                </div></div>
-            </div>
-
-            <div class="faq-item" data-category="course">
-                <div class="faq-question">
-                    <div class="faq-circle"><div class="faq-circle-inner"></div></div>
-                    <div class="faq-label"></div>
-                    <div class="faq-question-text-wrap">
-                        <div class="faq-arrow"></div>
-                        <span class="faq-question-text">When can I register for this programme?</span>
-                    </div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <div class="faq-answer-content">
-                        <div class="faq-answer-label">Answer:</div>
-                        <div class="faq-answer-text">Registration is currently open. Training is expected to begin in April 2026.</div>
-                    </div>
-                </div></div>
-            </div>
-
-            <div class="faq-item" data-category="course">
-                <div class="faq-question">
-                    <div class="faq-circle"><div class="faq-circle-inner"></div></div>
-                    <div class="faq-label"></div>
-                    <div class="faq-question-text-wrap">
-                        <div class="faq-arrow"></div>
-                        <span class="faq-question-text">What are the training &amp; reporting dates?</span>
-                    </div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <div class="faq-answer-content">
-                        <div class="faq-answer-label">Answer:</div>
-                        <div class="faq-answer-text">Bootcamp: 15–19 April. Reporting date: 22 April.</div>
-                    </div>
-                </div></div>
-            </div>
-
-            <div class="faq-item" data-category="course">
-                <div class="faq-question">
-                    <div class="faq-circle"><div class="faq-circle-inner"></div></div>
-                    <div class="faq-label"></div>
-                    <div class="faq-question-text-wrap">
-                        <div class="faq-arrow"></div>
-                        <span class="faq-question-text">What will I learn in this programme?</span>
-                    </div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <div class="faq-answer-content">
-                        <div class="faq-answer-label">Answer:</div>
-                        <div class="faq-answer-text">
-                            <strong>Technical:</strong> AI Certifications (Microsoft, Google, AWS)<br>
-                            <strong>Professional:</strong> Resume Writing, Interview &amp; Communication Skills<br>
-                            <strong>Future Skills:</strong> ESG, Green Skills, Cybersecurity<br>
-                            <strong>Leadership:</strong> Corporate Leadership, Public Policy Awareness
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-inner">
+                            <div class="flip-front">
+                                <div class="flip-front-icon"><i class="fa-solid fa-building-columns"></i></div>
+                                <div class="flip-front-question">What is the K-Youth Development Programme 2026?</div>
+                                <div class="flip-front-hint"><i class="fa-solid fa-rotate"></i> Click to reveal answer</div>
+                            </div>
+                            <div class="flip-back">
+                                <div class="flip-back-label">Answer</div>
+                                <div class="flip-back-answer">K-Youth is a youth employability initiative by Khazanah Nasional Berhad aimed at developing Malaysia's future talents through industry-relevant skills and real-world experience.</div>
+                                <span class="flip-back-close"><i class="fa-solid fa-rotate-left"></i></span>
+                            </div>
                         </div>
                     </div>
-                </div></div>
-            </div>
 
-            <div class="faq-item" data-category="course">
-                <div class="faq-question">
-                    <div class="faq-circle"><div class="faq-circle-inner"></div></div>
-                    <div class="faq-label"></div>
-                    <div class="faq-question-text-wrap">
-                        <div class="faq-arrow"></div>
-                        <span class="faq-question-text">What is the mode of learning?</span>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-inner">
+                            <div class="flip-front">
+                                <div class="flip-front-icon"><i class="fa-solid fa-user-check"></i></div>
+                                <div class="flip-front-question">What are the eligibility requirements?</div>
+                                <div class="flip-front-hint"><i class="fa-solid fa-rotate"></i> Click to reveal answer</div>
+                            </div>
+                            <div class="flip-back">
+                                <div class="flip-back-label">Answer</div>
+                                <div class="flip-back-answer">Malaysian citizen, aged 18–30, currently unemployed, Diploma/Degree holder, no prior government programmes (MySTEP, PROTÉGÉ, etc.), able to commit full-time for 4 months, with interest in Digital & Technology.</div>
+                                <span class="flip-back-close"><i class="fa-solid fa-rotate-left"></i></span>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-inner">
+                            <div class="flip-front">
+                                <div class="flip-front-icon"><i class="fa-solid fa-wallet"></i></div>
+                                <div class="flip-front-question">What is the cost of the programme?</div>
+                                <div class="flip-front-hint"><i class="fa-solid fa-rotate"></i> Click to reveal answer</div>
+                            </div>
+                            <div class="flip-back">
+                                <div class="flip-back-label">Answer</div>
+                                <div class="flip-back-answer">There is no cost to participants. In fact, you will receive a monthly allowance of approximately <strong>RM 2,000</strong> throughout the programme.</div>
+                                <span class="flip-back-close"><i class="fa-solid fa-rotate-left"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-inner">
+                            <div class="flip-front">
+                                <div class="flip-front-icon"><i class="fa-solid fa-sitemap"></i></div>
+                                <div class="flip-front-question">What is the overall programme structure?</div>
+                                <div class="flip-front-hint"><i class="fa-solid fa-rotate"></i> Click to reveal answer</div>
+                            </div>
+                            <div class="flip-back">
+                                <div class="flip-back-label">Answer</div>
+                                <div class="flip-back-answer">The programme runs for 4 months: 1 month of hybrid training followed by 3 months of On-the-Job Training (OJT). OJT is conducted fully on-site.</div>
+                                <span class="flip-back-close"><i class="fa-solid fa-rotate-left"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-inner">
+                            <div class="flip-front">
+                                <div class="flip-front-icon"><i class="fa-solid fa-certificate"></i></div>
+                                <div class="flip-front-question">Will I receive a certificate upon completion?</div>
+                                <div class="flip-front-hint"><i class="fa-solid fa-rotate"></i> Click to reveal answer</div>
+                            </div>
+                            <div class="flip-back">
+                                <div class="flip-back-label">Answer</div>
+                                <div class="flip-back-answer">Yes! Participants who successfully complete the programme will receive industry-recognised certifications from Microsoft, Google, or AWS.</div>
+                                <span class="flip-back-close"><i class="fa-solid fa-rotate-left"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-inner">
+                            <div class="flip-front">
+                                <div class="flip-front-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+                                <div class="flip-front-question">When will I receive my offer/placement letter?</div>
+                                <div class="flip-front-hint"><i class="fa-solid fa-rotate"></i> Click to reveal answer</div>
+                            </div>
+                            <div class="flip-back">
+                                <div class="flip-back-label">Answer</div>
+                                <div class="flip-back-answer">Offer letters will be issued after final approval. Further details, including placement host company information, will be included in the letter.</div>
+                                <span class="flip-back-close"><i class="fa-solid fa-rotate-left"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-inner">
+                            <div class="flip-front">
+                                <div class="flip-front-icon"><i class="fa-solid fa-building"></i></div>
+                                <div class="flip-front-question">Are host companies under Pepper Labs?</div>
+                                <div class="flip-front-hint"><i class="fa-solid fa-rotate"></i> Click to reveal answer</div>
+                            </div>
+                            <div class="flip-back">
+                                <div class="flip-back-label">Answer</div>
+                                <div class="flip-back-answer">No. Host companies are external organisations. If your preferred company is not listed, they will need to register under the programme to participate.</div>
+                                <span class="flip-back-close"><i class="fa-solid fa-rotate-left"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-inner">
+                            <div class="flip-front">
+                                <div class="flip-front-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="flip-front-question">Are there placements outside Klang Valley?</div>
+                                <div class="flip-front-hint"><i class="fa-solid fa-rotate"></i> Click to reveal answer</div>
+                            </div>
+                            <div class="flip-back">
+                                <div class="flip-back-label">Answer</div>
+                                <div class="flip-back-answer">Currently, placements are only available within Klang Valley. Updates will be shared if opportunities outside the area become available.</div>
+                                <span class="flip-back-close"><i class="fa-solid fa-rotate-left"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <div class="faq-answer-content">
-                        <div class="faq-answer-label">Answer:</div>
-                        <div class="faq-answer-text">The programme uses hybrid learning including physical classes, virtual sessions, webinars, mentorship, and self-paced learning modules.</div>
-                    </div>
-                </div></div>
             </div>
 
-            <div class="faq-item" data-category="course">
-                <div class="faq-question">
-                    <div class="faq-circle"><div class="faq-circle-inner"></div></div>
-                    <div class="faq-label"></div>
-                    <div class="faq-question-text-wrap">
-                        <div class="faq-arrow"></div>
-                        <span class="faq-question-text">What happens if I get a job during the programme?</span>
-                    </div>
+            <!-- ══ PANEL: COURSE ══ -->
+            <div class="faq-panel" id="panel-course">
+
+                <div class="topic-header visible">
+                    <div class="topic-tag"><i class="fa-solid fa-book-open"></i> Course Structure</div>
+                    <h2>What is the Course Structure?</h2>
+                    <p>The programme focuses on Artificial Intelligence (AI) training with placement opportunities, allowing participants to apply AI solutions in real-world business environments.</p>
                 </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <div class="faq-answer-content">
-                        <div class="faq-answer-label">Answer:</div>
-                        <div class="faq-answer-text">You are encouraged to pursue job opportunities. If you secure a permanent role, the programme will assist your transition.</div>
-                    </div>
-                </div></div>
-            </div>
 
-            <div class="faq-item" data-category="course">
-                <div class="faq-question">
-                    <div class="faq-circle"><div class="faq-circle-inner"></div></div>
-                    <div class="faq-label"></div>
-                    <div class="faq-question-text-wrap">
-                        <div class="faq-arrow"></div>
-                        <span class="faq-question-text">Is placement onsite or remote?</span>
+                <div class="flip-grid">
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-inner">
+                            <div class="flip-front">
+                                <div class="flip-front-icon"><i class="fa-solid fa-calendar-plus"></i></div>
+                                <div class="flip-front-question">When can I register for this programme?</div>
+                                <div class="flip-front-hint"><i class="fa-solid fa-rotate"></i> Click to reveal answer</div>
+                            </div>
+                            <div class="flip-back">
+                                <div class="flip-back-label">Answer</div>
+                                <div class="flip-back-answer">Registration is currently open. Training is expected to begin in April 2026. Apply early to secure your spot!</div>
+                                <span class="flip-back-close"><i class="fa-solid fa-rotate-left"></i></span>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-inner">
+                            <div class="flip-front">
+                                <div class="flip-front-icon"><i class="fa-solid fa-calendar-days"></i></div>
+                                <div class="flip-front-question">What are the training & reporting dates?</div>
+                                <div class="flip-front-hint"><i class="fa-solid fa-rotate"></i> Click to reveal answer</div>
+                            </div>
+                            <div class="flip-back">
+                                <div class="flip-back-label">Answer</div>
+                                <div class="flip-back-answer"><strong>Bootcamp:</strong> 15–19 April<br><strong>Reporting date:</strong> 22 April</div>
+                                <span class="flip-back-close"><i class="fa-solid fa-rotate-left"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-inner">
+                            <div class="flip-front">
+                                <div class="flip-front-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                                <div class="flip-front-question">What will I learn in this programme?</div>
+                                <div class="flip-front-hint"><i class="fa-solid fa-rotate"></i> Click to reveal answer</div>
+                            </div>
+                            <div class="flip-back">
+                                <div class="flip-back-label">Curriculum Overview</div>
+                                <div class="flip-back-answer">
+                                    <strong>Technical:</strong> AI Certifications (Microsoft, Google, AWS)
+                                    <strong>Professional:</strong> Resume Writing, Communication & Presentation
+                                    <strong>Future Skills:</strong> ESG, Green Skills, Cybersecurity
+                                    <strong>Leadership:</strong> Corporate Leadership, Public Policy Awareness
+                                </div>
+                                <span class="flip-back-close"><i class="fa-solid fa-rotate-left"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-inner">
+                            <div class="flip-front">
+                                <div class="flip-front-icon"><i class="fa-solid fa-laptop"></i></div>
+                                <div class="flip-front-question">What is the mode of learning?</div>
+                                <div class="flip-front-hint"><i class="fa-solid fa-rotate"></i> Click to reveal answer</div>
+                            </div>
+                            <div class="flip-back">
+                                <div class="flip-back-label">Answer</div>
+                                <div class="flip-back-answer">Hybrid learning: physical classes, virtual sessions, webinars, mentorship sessions, and self-paced learning modules.</div>
+                                <span class="flip-back-close"><i class="fa-solid fa-rotate-left"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-inner">
+                            <div class="flip-front">
+                                <div class="flip-front-icon"><i class="fa-solid fa-briefcase"></i></div>
+                                <div class="flip-front-question">What if I get a job during the programme?</div>
+                                <div class="flip-front-hint"><i class="fa-solid fa-rotate"></i> Click to reveal answer</div>
+                            </div>
+                            <div class="flip-back">
+                                <div class="flip-back-label">Answer</div>
+                                <div class="flip-back-answer">You are encouraged to pursue job opportunities. If you secure a permanent role, the programme team will assist with your transition out of the programme.</div>
+                                <span class="flip-back-close"><i class="fa-solid fa-rotate-left"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-inner">
+                            <div class="flip-front">
+                                <div class="flip-front-icon"><i class="fa-solid fa-house-laptop"></i></div>
+                                <div class="flip-front-question">Is placement onsite or remote?</div>
+                                <div class="flip-front-hint"><i class="fa-solid fa-rotate"></i> Click to reveal answer</div>
+                            </div>
+                            <div class="flip-back">
+                                <div class="flip-back-label">Answer</div>
+                                <div class="flip-back-answer">The majority of positions require on-site attendance. This is subject to the host company's policies.</div>
+                                <span class="flip-back-close"><i class="fa-solid fa-rotate-left"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-inner">
+                            <div class="flip-front">
+                                <div class="flip-front-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                                <div class="flip-front-question">How much is the penalty fee?</div>
+                                <div class="flip-front-hint"><i class="fa-solid fa-rotate"></i> Click to reveal answer</div>
+                            </div>
+                            <div class="flip-back">
+                                <div class="flip-back-label">Answer</div>
+                                <div class="flip-back-answer">The withdrawal fee varies on a case-by-case basis, calculated based on incurred course fees and salaries already disbursed.</div>
+                                <span class="flip-back-close"><i class="fa-solid fa-rotate-left"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <div class="faq-answer-content">
-                        <div class="faq-answer-label">Answer:</div>
-                        <div class="faq-answer-text">The majority of positions require on-site attendance, subject to the host company.</div>
-                    </div>
-                </div></div>
             </div>
 
-            <div class="faq-item" data-category="course">
-                <div class="faq-question">
-                    <div class="faq-circle"><div class="faq-circle-inner"></div></div>
-                    <div class="faq-label"></div>
-                    <div class="faq-question-text-wrap">
-                        <div class="faq-arrow"></div>
-                        <span class="faq-question-text">How much is the penalty fee?</span>
-                    </div>
+            <!-- ══ PANEL: OJT ══ -->
+            <div class="faq-panel" id="panel-ojt">
+
+                <div class="topic-header visible">
+                    <div class="topic-tag"><i class="fa-solid fa-briefcase"></i> OJT Experience</div>
+                    <h2>What is On-the-Job Training (OJT)?</h2>
+                    <p>OJT is a minimum 15-week paid workplace placement where participants gain real industry experience and apply their newly acquired knowledge and skills.</p>
                 </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <div class="faq-answer-content">
-                        <div class="faq-answer-label">Answer:</div>
-                        <div class="faq-answer-text">The withdrawal fee varies case by case, based on incurred course fees and salaries disbursed.</div>
-                    </div>
-                </div></div>
-            </div>
 
-            <!-- OJT -->
-            <div class="faq-item" data-category="ojt">
-                <div class="faq-question">
-                    <div class="faq-circle"><div class="faq-circle-inner"></div></div>
-                    <div class="faq-label"></div>
-                    <div class="faq-question-text-wrap">
-                        <div class="faq-arrow"></div>
-                        <span class="faq-question-text">What is On-the-Job Training (OJT)?</span>
+                <div class="flip-grid">
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-inner">
+                            <div class="flip-front">
+                                <div class="flip-front-icon"><i class="fa-solid fa-handshake"></i></div>
+                                <div class="flip-front-question">Will I get a job after the programme?</div>
+                                <div class="flip-front-hint"><i class="fa-solid fa-rotate"></i> Click to reveal answer</div>
+                            </div>
+                            <div class="flip-back">
+                                <div class="flip-back-label">Answer</div>
+                                <div class="flip-back-answer">Employment depends on your performance and the host company's hiring needs. Strong performance during OJT significantly increases your chances of being retained.</div>
+                                <span class="flip-back-close"><i class="fa-solid fa-rotate-left"></i></span>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-inner">
+                            <div class="flip-front">
+                                <div class="flip-front-icon"><i class="fa-solid fa-house"></i></div>
+                                <div class="flip-front-question">Is accommodation provided during OJT?</div>
+                                <div class="flip-front-hint"><i class="fa-solid fa-rotate"></i> Click to reveal answer</div>
+                            </div>
+                            <div class="flip-back">
+                                <div class="flip-back-label">Answer</div>
+                                <div class="flip-back-answer">No, accommodation is not provided by the programme. However, some host companies may offer arrangements — you can enquire about this during interviews.</div>
+                                <span class="flip-back-close"><i class="fa-solid fa-rotate-left"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-inner">
+                            <div class="flip-front">
+                                <div class="flip-front-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                                <div class="flip-front-question">Where is the physical class & OJT location?</div>
+                                <div class="flip-front-hint"><i class="fa-solid fa-rotate"></i> Click to reveal answer</div>
+                            </div>
+                            <div class="flip-back">
+                                <div class="flip-back-label">Answer</div>
+                                <div class="flip-back-answer">Classroom sessions are held in <strong>Petaling Jaya</strong>. OJT placement details will be shared exclusively with successful candidates after selection.</div>
+                                <span class="flip-back-close"><i class="fa-solid fa-rotate-left"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <div class="faq-answer-content">
-                        <div class="faq-answer-label">Answer:</div>
-                        <div class="faq-answer-text">OJT is a minimum 15-week paid placement where participants gain real workplace experience and apply their knowledge.</div>
-                    </div>
-                </div></div>
             </div>
 
-            <div class="faq-item" data-category="ojt">
-                <div class="faq-question">
-                    <div class="faq-circle"><div class="faq-circle-inner"></div></div>
-                    <div class="faq-label"></div>
-                    <div class="faq-question-text-wrap">
-                        <div class="faq-arrow"></div>
-                        <span class="faq-question-text">Will I get a job after the programme?</span>
-                    </div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <div class="faq-answer-content">
-                        <div class="faq-answer-label">Answer:</div>
-                        <div class="faq-answer-text">Employment depends on your performance and company hiring needs, but strong performance increases your chances significantly.</div>
-                    </div>
-                </div></div>
-            </div>
-
-            <div class="faq-item" data-category="ojt">
-                <div class="faq-question">
-                    <div class="faq-circle"><div class="faq-circle-inner"></div></div>
-                    <div class="faq-label"></div>
-                    <div class="faq-question-text-wrap">
-                        <div class="faq-arrow"></div>
-                        <span class="faq-question-text">Is accommodation provided during OJT?</span>
-                    </div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <div class="faq-answer-content">
-                        <div class="faq-answer-label">Answer:</div>
-                        <div class="faq-answer-text">No, accommodation is not provided. However, some companies may offer arrangements during interviews.</div>
-                    </div>
-                </div></div>
-            </div>
-
-            <div class="faq-item" data-category="ojt">
-                <div class="faq-question">
-                    <div class="faq-circle"><div class="faq-circle-inner"></div></div>
-                    <div class="faq-label"></div>
-                    <div class="faq-question-text-wrap">
-                        <div class="faq-arrow"></div>
-                        <span class="faq-question-text">Where is the physical class &amp; OJT location?</span>
-                    </div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <div class="faq-answer-content">
-                        <div class="faq-answer-label">Answer:</div>
-                        <div class="faq-answer-text">Classroom sessions are held in Petaling Jaya. OJT details will be shared with successful candidates only.</div>
-                    </div>
-                </div></div>
-            </div>
-
-        </div><!-- /faq-list -->
-    </div><!-- /faq-box -->
-    </div><!-- /faq-section-inner -->
+        </div><!-- /faq-main -->
+    </div><!-- /faq-outer -->
 </section>
-</div><!-- /faq-wrapper -->
 
-<!-- FOOTER -->
+<!-- ── FOOTER ── -->
 <footer>
     <div class="footer-inner">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <div class="footer-logo">
-                    <img src="https://pepperlabs.my/k-youth/assets/pepper-labs-logo/transparent-logo.png" alt="Pepper Labs Logo">
-                </div>
-                <ul>
-                    <li>A-3-7, Viva Residency (Commercial), Off Jalan Ipoh, 51200, Kuala Lumpur.</li>
-                    <li>info@pepperlabs.my</li>
-                    <li>(+60)16-350 4840</li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Company</h4>
-                <ul><li><a href="https://pepperlabs.my/who-we-are">Who We Are</a></li></ul>
-            </div>
-            <div class="footer-col">
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="https://pepperlabs.my/faq">FAQ</a></li>
-                    <li><a href="https://pepperlabs.my/work-with-us">Work With Us</a></li>
-                </ul>
-            </div>
+        <div class="footer-logo-row">
+            <img src="https://pepperlabs.my/k-youth/assets/pepper-labs-logo/transparent-logo.png" alt="Pepper Labs">
         </div>
         <div class="footer-bottom">
             <div>© 2024 Pepper Labs. All Rights Reserved.</div>
             <div class="social-links">
-                <i class="fa-brands fa-x-twitter"></i>
-                <i class="fa-brands fa-facebook-f"></i>
-                <i class="fa-brands fa-instagram"></i>
-                <i class="fa-brands fa-linkedin-in"></i>
+                <a href="https://x.com/pepperlabsmy" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.facebook.com/pepperlabsmy" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/pepperlabsmy" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/pepperlabsmy" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
             </div>
         </div>
     </div>
 </footer>
 
 <script>
-    const faqItems = document.querySelectorAll('.faq-item');
-    const filterButtons = document.querySelectorAll('.filter-btn');
+    const sidebarBtns = document.querySelectorAll('.sidebar-btn');
+    const panels = document.querySelectorAll('.faq-panel');
 
-    faqItems.forEach(item => {
-        item.querySelector('.faq-question').addEventListener('click', () => {
-            const isActive = item.classList.contains('active');
-            faqItems.forEach(el => el.classList.remove('active'));
-            if (!isActive) item.classList.add('active');
+    sidebarBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = btn.getAttribute('data-target');
+
+            sidebarBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            panels.forEach(p => p.classList.remove('active'));
+            document.getElementById('panel-' + target).classList.add('active');
+
+            // Reset all flip cards when switching
+            document.querySelectorAll('.flip-card').forEach(c => c.classList.remove('flipped'));
         });
     });
-
-    const applyFilter = (value) => {
-        filterButtons.forEach(b => b.classList.toggle('active', b.dataset.filter === value));
-        let i = 0;
-        faqItems.forEach(item => {
-            item.classList.remove('active', 'animate-in');
-            if (item.dataset.category === value) {
-                item.classList.remove('hidden');
-                const delay = i * 40;
-                setTimeout(() => item.classList.add('animate-in'), delay);
-                i++;
-            } else {
-                item.classList.add('hidden');
-            }
-        });
-    };
-
-    // Hero scale + fade as FAQ overlays
-    const hero = document.querySelector('.hero');
-    const faqWrapper = document.querySelector('.faq-wrapper');
-
-    function onScroll() {
-        const heroH = hero.offsetHeight;
-        const scrolled = window.scrollY;
-        const progress = Math.min(scrolled / heroH, 1);
-        const scale = 1 - progress * 0.06;
-        const opacity = 1 - progress * 0.5;
-        hero.style.transform = `scale(${scale})`;
-        hero.style.opacity = opacity;
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    filterButtons.forEach(btn => btn.addEventListener('click', () => applyFilter(btn.dataset.filter)));
-    applyFilter('programme');
 </script>
+
 </body>
 </html>
