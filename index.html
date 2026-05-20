@@ -6,7 +6,7 @@
     <title>FAQ - K-Youth | Pepper Labs</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
@@ -25,7 +25,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Outfit', sans-serif;
             background: var(--light-bg);
             color: var(--dark);
         }
@@ -257,7 +257,7 @@
             border: 2px solid transparent;
             background: #fff;
             color: var(--mid);
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Outfit', sans-serif;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
@@ -482,7 +482,7 @@
 
         /* ── FOOTER ── */
         footer {
-            padding: 32px 0 0;
+            padding: 48px 0 0;
             border-top: 1px solid var(--border);
             background: #fff;
         }
@@ -493,13 +493,67 @@
             padding: 0 24px;
         }
 
-        .footer-logo-row {
-            display: flex;
-            justify-content: center;
-            padding-bottom: 28px;
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 60px;
+            align-items: start;
+            padding-bottom: 36px;
         }
 
-        .footer-logo-row img { height: 64px; width: auto; }
+        .footer-logo-col img {
+            height: 58px;
+            width: auto;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-contact li {
+            list-style: none;
+            font-size: 13.5px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .footer-contact li a {
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-contact li a:hover { color: var(--orange); }
+
+        .footer-company h4 {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 14px;
+        }
+
+        .footer-company ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-company ul li a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--mid);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-company ul li a:hover { color: var(--orange); }
 
         .footer-bottom {
             border-top: 1px solid var(--border);
@@ -528,6 +582,10 @@
         }
 
         .social-links a:hover { color: var(--orange); }
+
+        @media (max-width: 640px) {
+            .footer-top { grid-template-columns: 1fr; gap: 28px; }
+        }
 
         /* ── RESPONSIVE ── */
         @media (max-width: 900px) {
@@ -942,16 +1000,30 @@
 <!-- ── FOOTER ── -->
 <footer>
     <div class="footer-inner">
-        <div class="footer-logo-row">
-            <img src="https://pepperlabs.my/k-youth/assets/pepper-labs-logo/transparent-logo.png" alt="Pepper Labs">
+        <div class="footer-top">
+            <div class="footer-logo-col">
+                <img src="https://pepperlabs.my/k-youth/assets/pepper-labs-logo/transparent-logo.png" alt="Pepper Labs">
+                <ul class="footer-contact">
+                    <li>A-3-7, Viva Residency (Commercial), Off Jalan Ipoh, 51200, Kuala Lumpur.</li>
+                    <li><a href="mailto:info@pepperlabs.my">info@pepperlabs.my</a></li>
+                    <li><a href="https://api.whatsapp.com/send?phone=60163504840" target="_blank" rel="noopener">(+60)16-350 4840</a></li>
+                </ul>
+            </div>
+            <div class="footer-company">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="https://pepperlabs.my/">About Pepper Labs</a></li>
+                    <li><a href="https://pepperlabs.my/k-youth/">K-Youth</a></li>
+                </ul>
+            </div>
         </div>
         <div class="footer-bottom">
             <div>© 2024 Pepper Labs. All Rights Reserved.</div>
             <div class="social-links">
-                <a href="https://x.com/pepperlabsmy" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://www.facebook.com/pepperlabsmy" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/pepperlabsmy" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/company/pepperlabsmy" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://x.com/pepperlabs/" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.facebook.com/pepperlabssocialenterprise/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/pepperlabsmy/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/pepper-labs-social-enterprise/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
             </div>
         </div>
     </div>
