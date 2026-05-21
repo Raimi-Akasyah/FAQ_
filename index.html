@@ -96,100 +96,7 @@
 
         .hero::after { content: none; }
 
-        /* Decorative scattered elements */
-        .hero-decor {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-            pointer-events: none;
-        }
 
-        /* Purple dot clusters - top left */
-        .hero-decor .dot-cluster-tl {
-            position: absolute;
-            top: 18px;
-            left: 28px;
-            display: grid;
-            grid-template-columns: repeat(3, 7px);
-            gap: 4px;
-        }
-        .hero-decor .dot-cluster-tl span {
-            width: 5px; height: 5px;
-            border-radius: 50%;
-            background: #7b6fa0;
-            opacity: 0.55;
-            display: block;
-        }
-        .hero-decor .dot-cluster-tl span:nth-child(1),
-        .hero-decor .dot-cluster-tl span:nth-child(3),
-        .hero-decor .dot-cluster-tl span:nth-child(7),
-        .hero-decor .dot-cluster-tl span:nth-child(9) { opacity: 0; }
-
-        /* Plus / cross - left mid */
-        .hero-decor .plus-left {
-            position: absolute;
-            bottom: 32px;
-            left: 60px;
-            color: #8a7db5;
-            font-size: 18px;
-            opacity: 0.5;
-            line-height: 1;
-        }
-
-        /* Globe icon - bottom center */
-        .hero-decor .globe-center {
-            position: absolute;
-            bottom: 16px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #e0a050;
-            font-size: 26px;
-            opacity: 0.55;
-        }
-
-        /* Small circle - top center-right */
-        .hero-decor .circle-tr {
-            position: absolute;
-            top: 22px;
-            right: 160px;
-            width: 14px; height: 14px;
-            border-radius: 50%;
-            border: 2px solid #8a7db5;
-            opacity: 0.35;
-        }
-
-        /* Orange dot group - top right */
-        .hero-decor .dot-cluster-tr {
-            position: absolute;
-            top: 20px;
-            right: 32px;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-            align-items: flex-start;
-        }
-        .hero-decor .dot-cluster-tr .dot-row {
-            display: flex;
-            gap: 4px;
-        }
-        .hero-decor .dot-cluster-tr span {
-            width: 5px; height: 5px;
-            border-radius: 50%;
-            background: #e0a050;
-            opacity: 0.6;
-            display: block;
-        }
-
-        /* Small decorative dot bottom right */
-        .hero-decor .dot-br {
-            position: absolute;
-            bottom: 28px;
-            right: 80px;
-            width: 7px; height: 7px;
-            border-radius: 50%;
-            background: #c8a0d8;
-            opacity: 0.4;
-        }
 
         .hero-content {
             position: relative;
@@ -622,28 +529,7 @@
 
 <!-- ── HERO ── -->
 <section class="hero">
-    <div class="hero-decor">
-        <!-- Purple dot cluster top-left -->
-        <div class="dot-cluster-tl">
-            <span></span><span></span><span></span>
-            <span></span><span></span><span></span>
-            <span></span><span></span><span></span>
-        </div>
-        <!-- Plus sign left -->
-        <div class="plus-left">+</div>
-        <!-- Globe center bottom -->
-        <div class="globe-center"><i class="fa-regular fa-circle-dot"></i></div>
-        <!-- Small open circle top center-right -->
-        <div class="circle-tr"></div>
-        <!-- Orange dot cluster top-right -->
-        <div class="dot-cluster-tr">
-            <div class="dot-row"><span></span><span></span><span></span></div>
-            <div class="dot-row"><span></span><span></span></div>
-            <div class="dot-row"><span></span></div>
-        </div>
-        <!-- Dot bottom right -->
-        <div class="dot-br"></div>
-    </div>
+
     <div class="hero-content">
         <h1>Frequently Asked Questions</h1>
     </div>
@@ -802,6 +688,66 @@
                             <div class="flip-back">
                                 <div class="flip-back-label">Answer</div>
                                 <div class="flip-back-answer">Currently, placements are only available within Klang Valley. Updates will be shared if opportunities outside the area become available.</div>
+                                <span class="flip-back-close"><i class="fa-solid fa-rotate-left"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-inner">
+                            <div class="flip-front">
+                                <div class="flip-front-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                                <div class="flip-front-question">How do I access my salary slip, and which platform is used for payroll?</div>
+                                <div class="flip-front-hint"><i class="fa-solid fa-rotate"></i> Click to reveal answer</div>
+                            </div>
+                            <div class="flip-back">
+                                <div class="flip-back-label">Answer</div>
+                                <div class="flip-back-answer">Salary slips are accessible via <strong>MooPayroll</strong>. Please ensure you have activated your MooPayroll account using the activation email sent to your registered email address.</div>
+                                <span class="flip-back-close"><i class="fa-solid fa-rotate-left"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-inner">
+                            <div class="flip-front">
+                                <div class="flip-front-icon"><i class="fa-solid fa-circle-check"></i></div>
+                                <div class="flip-front-question">How will I be notified if my application to the K-Youth programme has been accepted?</div>
+                                <div class="flip-front-hint"><i class="fa-solid fa-rotate"></i> Click to reveal answer</div>
+                            </div>
+                            <div class="flip-back">
+                                <div class="flip-back-label">Answer</div>
+                                <div class="flip-back-answer"></div>
+                                <span class="flip-back-close"><i class="fa-solid fa-rotate-left"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-inner">
+                            <div class="flip-front">
+                                <div class="flip-front-icon"><i class="fa-solid fa-comments"></i></div>
+                                <div class="flip-front-question">Does the programme include an interview as part of the selection process?</div>
+                                <div class="flip-front-hint"><i class="fa-solid fa-rotate"></i> Click to reveal answer</div>
+                            </div>
+                            <div class="flip-back">
+                                <div class="flip-back-label">Answer</div>
+                                <div class="flip-back-answer"></div>
+                                <span class="flip-back-close"><i class="fa-solid fa-rotate-left"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-inner">
+                            <div class="flip-front">
+                                <div class="flip-front-icon"><i class="fa-solid fa-notes-medical"></i></div>
+                                <div class="flip-front-question">If I was on medical leave, do I need to notify Pepper Labs and submit my medical certificate?</div>
+                                <div class="flip-front-hint"><i class="fa-solid fa-rotate"></i> Click to reveal answer</div>
+                            </div>
+                            <div class="flip-back">
+                                <div class="flip-back-label">Answer</div>
+                                <div class="flip-back-answer"></div>
                                 <span class="flip-back-close"><i class="fa-solid fa-rotate-left"></i></span>
                             </div>
                         </div>
